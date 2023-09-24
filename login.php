@@ -11,6 +11,7 @@
             // is-admin session
             $_SESSION['ADMIN'] = $user['ISADMIN'];
             $_SESSION['ID'] = $user['ID'];
+            $_SESSION['NAME'] = $user['NAME'];
             if($user['IS-ADMIN'] == 1){
                 header('Location: ./home.php');
             }else{

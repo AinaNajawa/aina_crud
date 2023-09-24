@@ -14,7 +14,7 @@ if(isset($_POST['logout'])){
 ?>
 <div class="flex min-h-full flex-col px-6 py-12 lg:px-8 bg-blue-200 h-screen">
     <div class="flex justify-between align-middle bg-white p-4 shadow rounded-lg">
-        <h1 class="text-2xl font-bold">DETAILS</h1>
+        <h1 class="text-2xl font-bold">DETAILS - <?php echo $_SESSION['NAME']; ?></h1>
         <div class="flex">
         <a href="./add.php">
             <button class="w-full py-2 px-4  bg-blue-200 color-white font-bold">
