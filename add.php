@@ -4,13 +4,13 @@ $ID = $_SESSION['ID'];
 $query = "SELECT * FROM users WHERE ID='$ID'";
 $result = mysqli_query($con, $query);
 $user = mysqli_fetch_assoc($result);
-if (isset($_POST['fullName']) && isset($_POST['phoneNumber']) && isset($_POST['time']) && isset($_POST['firstDate']) && isset($_POST['lastDate']) && isset($_POST['image'])) {
+if (isset($_POST['fullName']) && isset($_POST['phoneNumber']) && isset($_POST['time']) && isset($_POST['firstDate']) && isset($_POST['lastDate']) && isset($_FILES['image'])) {
     $fullName = $_POST['fullName'];
     $phoneNumber = $_POST['phoneNumber'];
     $time = $_POST['time'];
     $firstDate = $_POST['firstDate'];
     $lastDate = $_POST['lastDate'];
-    $image = $_POST['image'];
+    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
     $query = "INSERT INTO cuti (IDUSER, TIME, FIRSTDATE, LASTDATE, PICTURE, STATUS) VALUES ('$ID', '$time', '$firstDate', '$lastDate', '$image', 0)";
     $result = mysqli_query($con, $query);
     if ($result) {
@@ -31,7 +31,7 @@ if (isset($_POST['fullName']) && isset($_POST['phoneNumber']) && isset($_POST['t
     </div>
 
     <div class="flex justify-between align-middle bg-white p-4 mt-4 shadow rounded-lg">
-        <form class="space-y-6 w-full" action="#" method="POST">
+        <form class="space-y-6 w-full" action="#" method="POST" enctype="multipart/form-data">
             <div>
                 <label for="fullName" class="block text-sm font-medium leading-6 text-gray-900">
                     Full Name
